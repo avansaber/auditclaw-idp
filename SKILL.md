@@ -5,7 +5,7 @@ version: 1.0.0
 user-invocable: true
 homepage: https://www.auditclaw.ai
 source: https://github.com/avansaber/auditclaw-idp
-metadata: {"openclaw":{"type":"executable","requires":{"bins":["python3"]}}}
+metadata: {"openclaw":{"type":"executable","install":{"pip":"scripts/requirements.txt"},"requires":{"bins":["python3"],"env":[],"optionalEnv":["GOOGLE_WORKSPACE_SA_KEY","GOOGLE_WORKSPACE_ADMIN_EMAIL","OKTA_ORG_URL","OKTA_API_TOKEN"]}}}
 ---
 # AuditClaw IDP
 
