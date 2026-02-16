@@ -1,7 +1,7 @@
 ---
 name: auditclaw-idp
 description: Identity provider compliance checks for auditclaw-grc. 8 read-only checks across Google Workspace (MFA, admin audit, inactive users, passwords) and Okta (MFA, password policy, inactive users, session policy).
-version: 1.0.0
+version: 1.0.1
 user-invocable: true
 homepage: https://www.auditclaw.ai
 source: https://github.com/avansaber/auditclaw-idp
