@@ -1,16 +1,25 @@
 ---
 name: auditclaw-idp
-description: Identity provider compliance checks (Google Workspace + Okta) for auditclaw-grc
+description: Identity provider compliance checks for auditclaw-grc. 8 read-only checks across Google Workspace (MFA, admin audit, inactive users, passwords) and Okta (MFA, password policy, inactive users, session policy).
+version: 1.0.0
 user-invocable: true
-metadata: {"openclaw":{"requires":{"bins":["python3"]}}}
+metadata: {"openclaw":{"type":"executable","requires":{"bins":["python3"]}}}
 ---
-# Identity Provider Evidence Collection
+# AuditClaw IDP
 
-Companion skill for auditclaw-grc. Collects compliance evidence from Google Workspace and Okta identity providers.
+Companion skill for auditclaw-grc. Collects compliance evidence from Google Workspace and Okta identity providers using read-only API calls.
+
+**8 checks | Read-only API access | Evidence stored in shared GRC database**
+
+## Security Model
+- **Read-only access**: Google Workspace uses `admin.directory.user.readonly` scope only. Okta uses `okta.users.read`, `okta.factors.read`, `okta.policies.read` scopes only. No write/modify permissions.
+- **Credentials**: Uses standard env vars for each provider. No credentials stored by this skill.
+- **Dependencies**: Google API client + requests (all pinned in requirements.txt)
+- **Data flow**: Check results stored as evidence in `~/.openclaw/grc/compliance.sqlite` via auditclaw-grc
 
 ## Prerequisites
 - **Google Workspace:** Service account JSON with domain-wide delegation, admin email for impersonation
-- **Okta:** API token (SSWS) with `okta.users.read`, `okta.factors.read`, `okta.policies.read` scopes
+- **Okta:** API token (SSWS) with read-only scopes
 - `pip install -r scripts/requirements.txt`
 - auditclaw-grc skill installed and initialized
 
